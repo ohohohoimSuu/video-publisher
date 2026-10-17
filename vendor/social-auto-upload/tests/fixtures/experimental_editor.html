@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:">
+<meta name="publisher-fixture" content="PLATFORM-v1">
+<title>本地合成编辑器 · 非平台页面</title>
+<style>body{font:16px sans-serif;margin:2rem;max-width:800px}label{display:block;margin:1rem 0}input,textarea{display:block;width:90%}img{width:160px;height:90px;object-fit:cover}button{margin:1rem}</style>
+</head><body>
+<h1>合成编辑器，未连接平台</h1><p>只验证准备步骤。这个页面不会上传或发布。</p>
+<section data-publisher="editor" data-account-id="42" data-cover-saved="false">
+<label>合成视频<input data-publisher="video-file" type="file" accept="video/*"></label>
+<p data-publisher="transfer" data-state="idle">等待选择合成视频</p>
+<label>标题<input data-publisher="title"></label>
+<label>正文<textarea data-publisher="description"></textarea></label>
+<label>话题（保留每行原文）<textarea data-publisher="tags"></textarea></label>
+<label>指定封面<input data-publisher="cover-file" type="file" accept="image/*"></label>
+<img data-publisher="cover-preview" alt="合成封面预览" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
+<button data-publisher="save-cover" type="button">完成封面</button>
+<button data-publisher="publish" type="button">最终发布（测试禁止点击）</button>
+</section>
+<script>
+const editor = document.querySelector('[data-publisher="editor"]');
+const element = name => editor.querySelector(`[data-publisher="${name}"]`);
+window.fixtureControls = { stallVideo: false, freezeCover: false, ignoreSave: false, videoSelections: 0, publishClicks: 0 };
+element('video-file').addEventListener('change', event => {
+  window.fixtureControls.videoSelections++;
+  const file = event.target.files[0];
+  const state = element('transfer');
+  state.dataset.state = 'uploading'; state.textContent = '合成传输中';
+  state.dataset.fileName = file.name; state.dataset.fileSize = String(file.size);
+  if (!window.fixtureControls.stallVideo) setTimeout(() => {
+    state.dataset.state = 'complete'; state.textContent = '合成传输完成';
+  }, 70);
+});
+element('cover-file').addEventListener('change', event => {
+  editor.dataset.coverSaved = 'false';
+  if (window.fixtureControls.freezeCover) return;
+  const file = event.target.files[0];
+  setTimeout(() => { element('cover-preview').src = URL.createObjectURL(file); }, 70);
+});
+element('save-cover').addEventListener('click', () => {
+  if (!window.fixtureControls.ignoreSave) editor.dataset.coverSaved = 'true';
+});
+element('publish').addEventListener('click', () => { window.fixtureControls.publishClicks++; });
+</script></body></html>

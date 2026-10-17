@@ -1,0 +1,75 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Synthetic Xiaohongshu cover controls, offline only</title>
+<style>
+body { font: 16px sans-serif; background: #eef0f3; }
+#editor { padding: 20px; width: 680px; background: white; }
+#preview { display: block; width: 640px; height: 360px; margin: 10px 0; }
+#small-reference { width: 220px; height: 120px; }
+[hidden] { display: none !important; }
+</style>
+<div id="hidden-old" class="d-modal" hidden>
+  <h2>设置封面</h2><input type="file" accept="image/*" aria-label="上传封面图片">
+  <button onclick="window.events.push('hidden-save')">完成</button>
+</div>
+<div id="editor">
+  <h2 id="heading">设置封面</h2>
+  <div id="legacy-heading" hidden>设置封面</div>
+  <button id="upload-tab" hidden>上传封面</button>
+  <input id="cover-input" type="file" accept="image/*" aria-label="上传封面图片">
+  <button id="ai" onclick="window.events.push('ai')">生成封面</button>
+  <canvas id="preview" width="640" height="360"></canvas>
+  <canvas id="small-reference" width="220" height="120" hidden></canvas>
+  <div id="busy" role="progressbar" hidden>处理中</div>
+  <button id="save">完成</button>
+</div>
+<button id="publish" onclick="window.events.push('publish')">发布</button>
+<script>
+window.events = [];
+const preview = document.querySelector('#preview');
+const editor = document.querySelector('#editor');
+const busy = document.querySelector('#busy');
+const save = document.querySelector('#save');
+const paint = (canvas, color) => {
+  const context = canvas.getContext('2d');
+  context.fillStyle = color;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+};
+paint(preview, '#000');
+window.configure = (options = {}) => {
+  window.options = {delay: 150, ...options};
+  if (options.legacy) {
+    editor.className = 'd-modal';
+    document.querySelector('#heading').hidden = true;
+    document.querySelector('#legacy-heading').hidden = false;
+    document.querySelector('#upload-tab').hidden = false;
+    save.textContent = '确定';
+  }
+  if (options.smallReference) {
+    const small = document.querySelector('#small-reference');
+    small.hidden = false;
+    paint(small, '#000');
+  }
+};
+document.querySelector('#cover-input').addEventListener('change', async (event) => {
+  window.events.push('cover-file');
+  busy.hidden = false;
+  const image = new Image();
+  const source = URL.createObjectURL(event.target.files[0]);
+  image.src = source;
+  await image.decode();
+  setTimeout(() => {
+    if (window.options.smallReference) paint(document.querySelector('#small-reference'), '#00f');
+    if (!window.options.unchanged) {
+      preview.getContext('2d').drawImage(image, 0, 0, preview.width, preview.height);
+    }
+    busy.hidden = true;
+    window.events.push('preview-loaded');
+    URL.revokeObjectURL(source);
+  }, window.options.delay);
+});
+save.addEventListener('click', () => {
+  window.events.push('save');
+  editor.hidden = true;
+});
+</script>

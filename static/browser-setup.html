@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>下载与安装 · 视频发布台</title>
+  <style>
+    :root{color-scheme:light;--paper:#faf9f5;--ink:#252722;--muted:#666a60;--line:#dedfd5;--green:#445c35}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+    a{color:var(--green);text-underline-offset:3px}main{width:min(100% - 40px,1000px);margin:0 auto;padding:28px 0 64px}
+    header{display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--line)}.brand{font-weight:750;text-decoration:none;color:var(--ink)}.version{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 10px}
+    .hero{padding:40px 0 28px;max-width:780px}.eyebrow{font-size:12px;letter-spacing:2px;color:var(--muted);margin:0 0 10px}h1{font-size:clamp(27px,4vw,40px);line-height:1.3;letter-spacing:-1px;margin:0 0 16px}h2{font-size:23px;margin:0 0 14px}h3{font-size:17px;margin:0 0 6px}p{margin:8px 0}.lead{font-size:17px;color:var(--muted)}
+    .downloads{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 24px}.download{border:1px solid var(--line);border-radius:14px;padding:24px;background:white}.download.primary{border-color:#a4b397;background:#f1f5ed}.download p{color:var(--muted);min-height:52px;font-size:14px}.button{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:10px 16px;border-radius:7px;background:var(--ink);color:white;text-decoration:none;font-weight:650}.button.secondary{background:white;color:var(--ink);border:1px solid var(--line)}.file-note{display:block;margin-top:12px;color:var(--muted);font-size:12px}
+    .note{border-left:3px solid #9aa989;padding:12px 18px;background:#f0f0e8;color:#505449}.toc{display:flex;gap:22px;flex-wrap:wrap;padding:22px 0;border-bottom:1px solid var(--line);font-size:14px}.section{padding:32px 0;border-bottom:1px solid var(--line);scroll-margin-top:20px}
+    .steps{list-style:none;counter-reset:step;padding:0;margin:18px 0}.steps>li{position:relative;counter-increment:step;padding:0 0 24px 46px;min-height:44px}.steps>li::before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:#e7ebdf;color:#405330;text-align:center;font-weight:700;line-height:30px}.steps>li:last-child{padding-bottom:0}.steps p{font-size:14px;color:var(--muted)}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;background:#eeeee7;padding:3px 6px;border-radius:4px;overflow-wrap:anywhere}pre{background:#efefe8;padding:16px;border-radius:8px;overflow:auto}pre code{padding:0}
+    .confirm{background:#edf3e7;border:1px solid #cad7bd;border-radius:9px;padding:16px 20px}.confirm strong{color:#405330}.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}.compare div{border:1px solid var(--line);border-radius:8px;padding:16px}.compare p{font-size:14px;color:var(--muted)}.faq{padding:15px 0;border-bottom:1px solid var(--line)}.faq:last-child{border:0}.faq p{color:var(--muted);font-size:14px}.muted{color:var(--muted);font-size:13px}footer{padding-top:24px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    @media(max-width:650px){main{width:calc(100% - 32px)}.downloads,.compare{grid-template-columns:1fr}.hero{padding-top:28px}.download{padding:20px}.download p{min-height:0}.toc{gap:12px 20px}.section{padding:26px 0}.steps>li{padding-left:40px}.button{width:100%}}
+  </style>
+</head>
+<body><main>
+  <header><a class="brand" href="/">视频发布台</a><span class="version">Chrome 扩展 0.4.1 · 测试版</span></header>
+  <div class="hero"><p class="eyebrow">下载与安装</p><h1>在常用 Chrome 中准备视频</h1><p class="lead">面向 B站、抖音和小红书。使用当前浏览器的登录，上传和填写后，最后由你确认发布。</p></div>
+  <div class="downloads" id="downloads">
+    <section class="download primary"><h2>Chrome 扩展 0.4.1</h2><p>已运行本机发布台？下载这个组件，即可在网页里一键连接 Chrome。</p><a class="button" href="/api/browser/extension.zip" download>下载 Chrome 扩展 0.4.1</a><span class="file-note">ZIP 压缩包 · 解压后加载 · 由本机服务生成下载</span></section>
+    <section class="download"><h2>第一次使用发布台</h2><p>下载本机运行包。素材处理和浏览器连接在你自己的电脑上运行。</p><a class="button secondary" href="https://github.com/ohohohoimSuu/video-publisher/archive/refs/heads/main.zip" download>下载本机运行包</a><span class="file-note">开源源码包 · 需要 Python 3.11 或 3.12 · 内含扩展</span></section>
+  </div>
+  <div class="note"><strong>开始前需要：</strong>桌面版 Chrome 125 或更新版本，以及已启动的本机发布台。扩展下载和安装不需要平台账号；使用时在自己的 Chrome 登录平台。当前提供 macOS 测试包，Windows 完整安装与平台流程尚未验收。</div>
+  <nav class="toc" aria-label="安装步骤"><a href="#local-app">准备本机发布台</a><a href="#first-install">首次安装扩展</a><a href="#upgrade">从旧版升级</a><a href="#connect">连接与测试</a><a href="#faq">常见问题</a></nav>
+
+  <section class="section" id="local-app"><h2>先启动本机发布台</h2><p>如果网页已显示“工作区已就绪”，可以直接跳到<a href="#first-install">首次安装扩展</a>。</p>
+    <ol class="steps"><li><h3>下载并解压本机运行包</h3><p>得到 <code>video-publisher</code> 文件夹。把它放到自己方便管理的位置；程序运行期间请保留这个文件夹。</p></li><li><h3>准备 Python，并安装依赖</h3><p>电脑需要 Python 3.11 或 3.12。打开文件夹中的 <code>setup.command</code>，等待依赖安装完成。首次安装需要联网下载运行环境。</p></li><li><h3>启动发布台</h3><p>打开 <code>启动发布台.command</code>。它会打开本机网页。使用期间保持这个终端窗口运行，再返回本网站连接 Chrome。</p></li></ol>
+    <p class="muted">这是需要本机运行环境的测试包，尚不是免安装的独立桌面 App。每位使用者的数据保存在自己的电脑；下载包不含其他人的账号、视频或任务记录。</p>
+  </section>
+
+  <section class="section" id="first-install"><h2>首次安装 Chrome 扩展</h2>
+    <ol class="steps"><li><h3>下载扩展并解压</h3><p>点击上方“下载 Chrome 扩展 0.4.1”。解压后得到 <code>video-publisher-chrome</code> 文件夹。若下载的是本机运行包，也可以直接使用里面的 <code>chrome-extension</code> 文件夹。</p></li><li><h3>打开 Chrome 扩展管理页</h3><p>在平常登录平台的那个 Chrome 用户配置中，把 <code>chrome://extensions/</code> 输入地址栏并按回车，再开启右上角“开发者模式”。</p></li><li><h3>加载文件夹</h3><p>点击“加载已解压的扩展程序”，选择刚解压的 <code>video-publisher-chrome</code> 文件夹。选中后应该能在文件夹里看到 <code>manifest.json</code>；不要选择 ZIP 文件，也不要只选择某个 JS 文件。</p></li><li><h3>确认名称和版本</h3><p>扩展卡片应显示“本地视频发布台 · 普通 Chrome 上传”，版本 <strong>0.4.1</strong>，开关处于启用状态。Chrome 会说明所需权限，其中“调试”权限用于操作任务新开的平台页面。</p></li></ol>
+    <div class="confirm"><strong>装对版本的标志</strong><p>点开扩展后，看到“配对已经内嵌到发布台”和“断开连接”。日常使用不需要填写连接码，也不需要打开这个弹窗。</p></div>
+  </section>
+
+  <section class="section" id="upgrade"><h2>已经装过旧版？这样升级</h2>
+    <div class="compare"><div><h3>旧版：登录同步</h3><p>显示“一次性连接码”“同步当前平台登录”。它只同步会话，不能完成新版网页连接。</p></div><div><h3>新版：普通 Chrome 上传</h3><p>版本 0.4.1，显示“配对已经内嵌到发布台”。在发布台网页中点击“连接 Chrome”。</p></div></div>
+    <ol class="steps"><li><h3>下载并解压新版</h3><p>使用本页的 0.4.1 下载按钮。仅刷新发布台网页，不会更新 Chrome 中已经加载的旧扩展。</p></li><li><h3>停用旧的“登录同步”扩展</h3><p>在扩展管理页关闭旧扩展的开关，避免之后误点。不要改动其他无关扩展。</p></li><li><h3>加载新版文件夹</h3><p>点击“加载已解压的扩展程序”，选择本次解压的 <code>video-publisher-chrome</code> 文件夹。确认显示版本 0.4.1，再刷新发布台网页。</p></li></ol>
+    <p class="muted">如果你明确用新版文件覆盖了原来加载的同一个文件夹，也可以点击该扩展卡片的“重新加载”。没有替换文件时，重新加载旧卡片仍然是旧版。</p>
+  </section>
+
+  <section class="section" id="connect"><h2>回到网页，连接并测试</h2>
+    <ol class="steps"><li><h3>确认本机发布台正在运行</h3><p>网页应显示“工作区已就绪”。如果没有，先启动本机运行包中的 <code>启动发布台.command</code>。</p></li><li><h3>点击“连接 Chrome”</h3><p>在安装了扩展的同一个 Chrome 中刷新发布台网页，然后点击“连接 Chrome”。配对自动完成，不用复制连接码。</p></li><li><h3>先测试打开三个平台</h3><p>显示“普通 Chrome 已连接”后，点击“测试打开三个平台”。这个按钮只打开 B站、抖音和小红书页面，不选择文件、不上传、不发布。</p></li></ol>
+    <div class="confirm"><strong>连接成功后，日常操作只留在发布台</strong><p>选视频和平台 → 上传并填写 → 在平台页面检查内容 → 自己点击发布。平台要求登录或手机验证时，在对应页面完成。</p></div>
+  </section>
+
+  <section class="section" id="faq"><h2>遇到问题，先检查这里</h2>
+    <div class="faq"><h3>已经安装，网页仍提示没有扩展</h3><p>确认扩展是 0.4.1、已启用，并装在当前打开发布台的同一个 Chrome 用户配置中。刷新网页后再点“连接 Chrome”；如果弹窗仍有“一次性连接码”，请按旧版升级步骤操作。</p></div>
+    <div class="faq"><h3>显示“无法连接本机服务”</h3><p>扩展不能代替本机运行包。启动本机发布台并保持终端窗口运行；浏览器询问是否允许本网站连接本机服务时，请按自己的使用意愿决定是否允许。</p></div>
+    <div class="faq"><h3>为什么没有 Chrome 商店的一键安装按钮？</h3><p>当前是测试版，尚未发布到 Chrome 网上应用店，使用“加载已解压的扩展程序”安装。安装包从本网站直接下载，不依赖任何人的电脑或登录状态。</p></div>
+    <div class="faq"><h3>会操作我原来打开的标签页吗？</h3><p>组件只接入本次任务新开的平台页面。平台登录继续保存在当前 Chrome；组件不申请 Cookie 读取权限，也不会点击最终发布。</p></div>
+    <div class="faq"><h3>支持范围与测试进度</h3><p>当前普通 Chrome 路线面向 B站、抖音和小红书。代码和本机通信检查已通过，真实平台完整上传仍在验收中。不要把“页面能打开”当作“上传填写已全部通过”。封面失败时可在保留的页面手动处理，本版尚不支持普通 Chrome 的自动封面续接。</p></div>
+  </section>
+  <footer><span>视频发布台 · 测试版安装说明</span><a href="/">返回发布台</a></footer>
+</main></body></html>

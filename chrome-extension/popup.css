@@ -1,0 +1,17 @@
+:root { color-scheme: light; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #172033; background: #f6f7fa; }
+* { box-sizing: border-box; }
+body { margin: 0; width: 370px; }
+main { padding: 23px; }
+.eyebrow { margin: 0 0 5px; font-size: 11px; color: #586579; letter-spacing: .08em; }
+h1 { margin: 0 0 17px; font-size: 21px; line-height: 1.4; }
+.platform { border: 1px solid #ccd9ea; border-radius: 9px; background: #edf4fd; padding: 11px 12px; font-size: 14px; font-weight: 600; }
+.instructions, .scope, .footnote { font-size: 12px; line-height: 1.7; color: #586579; }
+label { display: block; margin: 17px 0 7px; font-weight: 600; font-size: 13px; }
+input { width: 100%; padding: 12px 11px; border: 1px solid #b9c6d9; border-radius: 7px; font: inherit; font-size: 13px; background: white; }
+input:focus-visible, button:focus-visible { outline: 3px solid #80aafa; outline-offset: 2px; }
+button { width: 100%; margin-top: 4px; padding: 12px; border: 0; border-radius: 7px; background: #1e57b6; color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+button:disabled { background: #aab6c8; cursor: default; }
+.status { font-size: 13px; line-height: 1.65; margin: 12px 0 0; overflow-wrap: anywhere; }
+.status[data-state="error"] { color: #ab2424; }
+.status[data-state="success"] { color: #156244; }
+.footnote { margin-bottom: 0; font-size: 11px; }

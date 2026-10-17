@@ -1,0 +1,19 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:">
+<meta name="publisher-fixture" content="tencent-source-v1">
+<title>视频号旧源码字段 · 本地合成页面</title></head><body>
+<h1>来源于已有源码的字段选择器，未访问真实视频号</h1>
+<input hidden placeholder="填写短标题有机会获得更多流量" value="隐藏旧字段">
+<input placeholder="填写短标题有机会获得更多流量">
+<div class="input-editor" contenteditable="true"></div>
+<button id="declaration" type="button">选择视频标注</button>
+<button id="ai-option" type="button" hidden>含AI生成内容</button>
+<button id="final-publish" type="button">发表</button>
+<script>
+document.getElementById('declaration').onclick = () => document.getElementById('ai-option').hidden = false;
+document.getElementById('ai-option').onclick = () => {
+  document.getElementById('declaration').textContent = '含AI生成内容';
+  document.getElementById('ai-option').hidden = true;
+};
+document.getElementById('final-publish').onclick = () => document.body.dataset.published = 'true';
+</script></body></html>
